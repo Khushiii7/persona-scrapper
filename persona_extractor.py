@@ -3,7 +3,6 @@ from transformers import pipeline
 
 nlp = spacy.load("en_core_web_sm")
 
-# Load transformers pipelines
 try:
     summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
 except Exception as e:
@@ -55,7 +54,6 @@ def build_user_persona(posts, comments):
         except Exception as e:
             summary = ""
 
-    # Use spaCy for NER and noun chunks as fallback/interests
     interests = set()
     topics = set()
     demographics = set()
@@ -70,7 +68,6 @@ def build_user_persona(posts, comments):
                 citations["Demographics"].append(link)
         for chunk in doc.noun_chunks:
             topics.add(chunk.text)
-    # Add summary-based topics if available
     if summary:
         persona["Frequently Mentioned Topics"] = list(set(summary.split()))[:10]
     else:
@@ -78,12 +75,10 @@ def build_user_persona(posts, comments):
     persona["Interests"] = list(interests)
     persona["Demographics"] = ", ".join(list(demographics)[:3])
 
-    # Writing style: use average length as before
     total_len = sum(len(t[0].split()) for t in all_texts) / len(all_texts) if all_texts else 0
     persona["Writing Style"] = "Detailed" if total_len > 20 else "Concise"
     citations["Writing Style"] = [t[1] for t in all_texts]
 
-    # Tone: use sentiment analysis if available
     if sentiment_analyzer:
         sentiments = []
         for t, _ in all_texts:
@@ -110,11 +105,9 @@ def build_user_persona(posts, comments):
             persona["Tone"] = "Neutral"
     citations["Tone"] = [t[1] for t in all_texts]
 
-    # Values, Goals, Challenges: Use summarizer if available, else fallback
     def extract_section(text, keyword):
         if not text:
             return ""
-        # Simple heuristic: find sentences with the keyword
         sentences = text.split('.')
         for s in sentences:
             if keyword.lower() in s.lower():

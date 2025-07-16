@@ -1,6 +1,6 @@
 # Reddit User Persona Extractor
 
-This project extracts a detailed user persona from a Reddit user's public posts and comments. It uses NLP and local LLMs to analyze interests, writing style, tone, demographics, values, goals, and challenges, and cites the posts/comments used for each insight.
+This project extracts a detailed user persona from a Reddit user's public posts and comments. It uses NLP and local LLMs to analyze interests, writing style, tone, demographics, values, goals and challenges and cites the posts/comments used for each insight.
 
 ## Features
 - Input a Reddit user profile URL

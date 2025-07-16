@@ -1,10 +1,12 @@
 import praw
 
 def get_reddit_instance():
+    import os
+
     reddit = praw.Reddit(
-        client_id="ryeqQiceSnGOqC5j1a73_g",
-        client_secret="JOPnAB-qKNWJ8iG09h3GYCb7q04krQ",
-        user_agent="windows:reddit_persona_scraper:v1.0 (by /u/khushi_goyal)"
+        client_id=os.getenv("REDDIT_CLIENT_ID"),
+        client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
+        user_agent=os.getenv("REDDIT_USER_AGENT")
     )
     return reddit
 
