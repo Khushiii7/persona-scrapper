@@ -27,8 +27,8 @@ This project extracts a detailed user persona from a Reddit user's public posts 
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
-   cd reddit_user_persona
+    git clone "https://github.com/Khushiii7/persona-scrapper.git"
+    cd persona-scrapper
    ```
 
 2. **Install dependencies:**
