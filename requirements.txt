@@ -1,0 +1,7 @@
+praw
+spacy
+nltk
+requests
+beautifulsoup4
+transformers
+torch
